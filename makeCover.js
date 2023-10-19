@@ -10,7 +10,7 @@ var homeView = document.querySelector(".home-view");
 var formView = document.querySelector(".form-view");
 var savedView = document.querySelector(".saved-view");
 
-//- The *Show New Random Cover* and *Save Cover* buttons should be hidden
+//- The *Show New Random Cover* and *Save Cover* buttons should be hidden.
 
 makeNewButton.addEventListener("click", function() {
     saveCoverButton.classList.add("hidden");
