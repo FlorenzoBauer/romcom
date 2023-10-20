@@ -1,5 +1,11 @@
 // Create variables targetting the relevant DOM elements here 👇
 
+
+var coverImage = document.querySelector('.cover-image');
+var coverTitle = document.querySelector('.cover-title');
+var coverTagline1 = document.querySelector('.tagline-1');
+var coverTagline2 = document.querySelector('.tagline-2');
+
 var homeView = document.querySelector('.home-view');
 var formView = document.querySelector('.form-view');
 var savedView = document.querySelector('.saved-view')
@@ -24,6 +30,7 @@ homeButton.addEventListener('click', homeF);
 saveVButton.addEventListener('click', savedF);
 makeOwnButton.addEventListener('click', makeF);
 randomCover.addEventListener('click', randomButton);
+
 // Create your event handlers and other functions here 👇
 function homeF(){
   homeButton.classList.add("hidden");
@@ -61,14 +68,38 @@ function savedF(){
   
   savedView.classList.remove("hidden");
   homeButton.classList.remove("hidden");
-  
+ }
+function randomButton() {
+  var cove = covers[getRandomIndex(covers)];
+  var title = titles[getRandomIndex(titles)];
+  var descriptors1 = descriptors[getRandomIndex(descriptors)];
+  var descriptors2 = descriptors[getRandomIndex(descriptors)];
+  coverImage.src = cove;
+  coverTitle.innerText = title;
+  coverTagline1.innerText = descriptors1;
+  coverTagline2.innerText = descriptors2;
+ 
 }
 
-function randomButton(){
-
-}
-
-
+// function formed () {
+//     event.preventDefault();
+//     var cover = document.querySelector('#cover').value;
+//     var title = document.querySelector('#title').value;
+//     var descriptors1 = document.querySelector('#descriptor1').value;
+//     var descriptors2 = document.querySelector('#descriptor2').value;
+//     covers.push(cover);
+//     titles.push(title);
+//     descriptors.push(descriptors1);
+//     descriptors.push(descriptors2);
+//     currentCover = createCover(cover, title, descriptors1, descriptors2);
+//     coverImage.src = cover;
+//     coverImage.alt = `${title}`;
+//     document.querySelector('.cover-title').innerText = title;
+//     document.querySelector('.tagline-1').innerText = descriptors1;
+//     document.querySelector('.tagline-2').innerText = descriptors2;
+//     homeF();
+//     console.log(cover, title, descriptors1, descriptors2);
+//   }
 
 // We've provided two functions to get you started
 function getRandomIndex(array) {
@@ -85,4 +116,3 @@ function createCover(imgSrc, title, descriptor1, descriptor2) {
   }
   return cover
 }
-
