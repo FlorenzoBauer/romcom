@@ -1,5 +1,6 @@
 // Create variables targetting the relevant DOM elements here 👇
 
+var coverImage = document.querySelector('.cover-image');
 var homeView = document.querySelector('.home-view');
 var formView = document.querySelector('.form-view');
 var savedView = document.querySelector('.saved-view')
@@ -64,11 +65,36 @@ function savedF(){
   
 }
 
-function randomButton(){
+//random cover with a random image, title, and tagline with two descriptors
+//shuffle and generate using getRandomIndex(array) function.
+// a:
 
+// function randomButton(){
+
+// var cove = getRandomIndex(covers);
+// var title = getRandomIndex(titles);
+// var descriptors1 = getRandomIndex(descriptors);
+// var descriptors2 = getRandomIndex(descriptors);
+// var newCover = createCover(cove, title, descriptors1, descriptors2);
+// coverImage.src = covers;
+// console.log(coverImage.src);
+// return coverImage.src;
+
+// }
+function randomButton() {
+  var cove = getRandomIndex(covers);
+  var title = getRandomIndex(titles);
+  var descriptors1 = getRandomIndex(descriptors);
+  var descriptors2 = getRandomIndex(descriptors);
+  currentCover = createCover(cove, title, descriptors1, descriptors2);
+  coverImage.src = currentCover.coverImg;
+  coverImage.alt = `${currentCover.title} by ${currentCover.author}`;
+  document.querySelector('.cover-title').innerText = currentCover.title;
+  document.querySelector('.tagline-1').innerText = currentCover.tagline1;
+  document.querySelector('.tagline-2').innerText = currentCover.tagline2;
+
+  console.log(currentCover);
 }
-
-
 
 // We've provided two functions to get you started
 function getRandomIndex(array) {
@@ -85,4 +111,3 @@ function createCover(imgSrc, title, descriptor1, descriptor2) {
   }
   return cover
 }
-
