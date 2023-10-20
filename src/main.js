@@ -1,5 +1,6 @@
 // Create variables targetting the relevant DOM elements here 👇
 
+
 var coverImage = document.querySelector('.cover-image');
 var homeView = document.querySelector('.home-view');
 var formView = document.querySelector('.form-view');
@@ -25,6 +26,7 @@ homeButton.addEventListener('click', homeF);
 saveVButton.addEventListener('click', savedF);
 makeOwnButton.addEventListener('click', makeF);
 randomCover.addEventListener('click', randomButton);
+makeBook
 // Create your event handlers and other functions here 👇
 function homeF(){
   homeButton.classList.add("hidden");
@@ -62,25 +64,7 @@ function savedF(){
   
   savedView.classList.remove("hidden");
   homeButton.classList.remove("hidden");
-  
-}
-
-//random cover with a random image, title, and tagline with two descriptors
-//shuffle and generate using getRandomIndex(array) function.
-// a:
-
-// function randomButton(){
-
-// var cove = getRandomIndex(covers);
-// var title = getRandomIndex(titles);
-// var descriptors1 = getRandomIndex(descriptors);
-// var descriptors2 = getRandomIndex(descriptors);
-// var newCover = createCover(cove, title, descriptors1, descriptors2);
-// coverImage.src = covers;
-// console.log(coverImage.src);
-// return coverImage.src;
-
-// }
+ }
 function randomButton() {
   var cove = getRandomIndex(covers);
   var title = getRandomIndex(titles);
@@ -88,13 +72,48 @@ function randomButton() {
   var descriptors2 = getRandomIndex(descriptors);
   currentCover = createCover(cove, title, descriptors1, descriptors2);
   coverImage.src = currentCover.coverImg;
-  coverImage.alt = `${currentCover.title} by ${currentCover.author}`;
+  coverImage.alt = `${currentCover.title}`;
   document.querySelector('.cover-title').innerText = currentCover.title;
   document.querySelector('.tagline-1').innerText = currentCover.tagline1;
   document.querySelector('.tagline-2').innerText = currentCover.tagline2;
 
   console.log(currentCover);
 }
+// function randomButton() {
+
+//   var cove = getRandomIndex(covers);
+//   var title = getRandomIndex(titles);
+//   var descriptors1 = getRandomIndex(descriptors);
+//   var descriptors2 = getRandomIndex(descriptors);
+//   currentCover = createCover(cove, title, descriptors1, descriptors2);
+//   coverImage.src = cove[covers];
+//   coverImage.alt = `${currentCover[title]}`;
+//   document.querySelector('.cover-title').innerText = currentCover[title];
+//   document.querySelector('.tagline-1').innerText = currentCover[descriptors1];
+//   document.querySelector('.tagline-2').innerText = currentCover[descriptors2];
+
+//   console.log(title[titles], descriptors1, descriptors2);
+// }
+
+function formed () {
+    event.preventDefault();
+    var cover = document.querySelector('#cover').value;
+    var title = document.querySelector('#title').value;
+    var descriptors1 = document.querySelector('#descriptor1').value;
+    var descriptors2 = document.querySelector('#descriptor2').value;
+    covers.push(cover);
+    titles.push(title);
+    descriptors.push(descriptors1);
+    descriptors.push(descriptors2);
+    currentCover = createCover(cover, title, descriptors1, descriptors2);
+    coverImage.src = cover;
+    coverImage.alt = `${title}`;
+    document.querySelector('.cover-title').innerText = title;
+    document.querySelector('.tagline-1').innerText = descriptors1;
+    document.querySelector('.tagline-2').innerText = descriptors2;
+    homeF();
+    console.log(cover, title, descriptors1, descriptors2);
+  }
 
 // We've provided two functions to get you started
 function getRandomIndex(array) {
