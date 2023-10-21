@@ -18,7 +18,7 @@ var createBookButton = document.querySelector('.create-new-book-button');
 // We've provided a few variables below
 
 var savedCovers = [];
-var currentCover;
+var currentCover = createCover(coverImage.src, coverTitle.innerText, coverTagline1.innerText, coverTagline2.innerText);
 // Add your event listeners here 👇
 
 homeButton.addEventListener('click', homeF);
@@ -74,8 +74,6 @@ function savedF(){
   showSavedCovers();
  }
 function showSavedCovers(){
-  currentCover = createCover(coverImage.src, coverTitle.innerText, coverTagline1.innerText, coverTagline2.innerText);
-  
   var savedCoversSection = document.querySelector('.saved-covers-section');
   savedCoversSection.innerHTML = '';
   for (var i = 0; i < savedCovers.length; i++) {
