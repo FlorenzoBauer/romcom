@@ -18,9 +18,9 @@ var createBookButton = document.querySelector('.create-new-book-button');
 // We've provided a few variables below
 
 var savedCovers = [];
-var currentCover;
-// Add your event listeners here 👇
+var currentCover = createCover(coverImage.src, coverTitle.innerText, coverTagline1.innerText, coverTagline2.innerText);
 
+// Add your event listeners here 👇
 homeButton.addEventListener('click', homeF);
 makeOwnButton.addEventListener('click', makeF);
 randomCover.addEventListener('click', randomButton);
@@ -74,7 +74,7 @@ function savedF(){
   showSavedCovers();
  }
 function showSavedCovers(){
-  currentCover = createCover(coverImage.src, coverTitle.innerText, coverTagline1.innerText, coverTagline2.innerText);
+//currentCover = createCover(coverImage.src, coverTitle.innerText, coverTagline1.innerText, coverTagline2.innerText);
   
   var savedCoversSection = document.querySelector('.saved-covers-section');
   savedCoversSection.innerHTML = '';
@@ -99,15 +99,18 @@ function randomButton() {
   coverTitle.innerText = title;
   coverTagline1.innerText = descriptors1;
   coverTagline2.innerText = descriptors2;
- 
+
+  currentCover = createCover(cove, title, descriptors1, descriptors2)  
 }
+
 function makeMybook(event) {
   event.preventDefault();
-  var userCover = document.querySelector('.user-cover').value;
+  var userCover = document.getElementById('cover').value;
   var userTitle = document.querySelector('.user-title').value;
   var userTagline1 = document.querySelector('.user-desc1').value;
   var userTagline2 = document.querySelector('.user-desc2').value;
-    
+  
+  
     coverImage.src = userCover;
     coverTitle.innerText = userTitle;
     coverTagline1.innerText = userTagline1;
@@ -116,6 +119,10 @@ function makeMybook(event) {
       covers.push(userCover);
       titles.push(userTitle);
       descriptors.push(userTagline1, userTagline2);
+
+      currentCover = createCover(userCover, userTitle, userTagline1, userTagline2)
+      //saveCover(newCover)
+
   homeF();
 }
 // function makeBookInfo(event){
