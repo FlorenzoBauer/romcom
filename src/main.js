@@ -81,25 +81,45 @@ function randomButton() {
  
 }
 
-// function formed () {
-//     event.preventDefault();
-//     var cover = document.querySelector('#cover').value;
-//     var title = document.querySelector('#title').value;
-//     var descriptors1 = document.querySelector('#descriptor1').value;
-//     var descriptors2 = document.querySelector('#descriptor2').value;
-//     covers.push(cover);
-//     titles.push(title);
-//     descriptors.push(descriptors1);
-//     descriptors.push(descriptors2);
-//     currentCover = createCover(cover, title, descriptors1, descriptors2);
-//     coverImage.src = cover;
-//     coverImage.alt = `${title}`;
-//     document.querySelector('.cover-title').innerText = title;
-//     document.querySelector('.tagline-1').innerText = descriptors1;
-//     document.querySelector('.tagline-2').innerText = descriptors2;
-//     homeF();
-//     console.log(cover, title, descriptors1, descriptors2);
-//   }
+
+ function formed(event) {
+    event.preventDefault();
+     var userCover = document.querySelector('.user-cover').value;
+     var userTitle = document.querySelector('.user-title').value;
+     var userDescriptors1 = document.querySelector('.user-desc1').value;
+     var userDescriptors2 = document.querySelector('.user-desc2').value;
+   
+     // this part should push the user inputs to the arrays
+     covers.push(userCover);
+     titles.push(userTitle);
+     descriptors.push(userDescriptors1, userDescriptors2);
+
+     // these should display them to the DOM
+     coverImage.src = userCover;
+     coverTitle.innerText = userTitle;
+     coverTagline1.innerText = userDescriptors1;
+     coverTagline2.innerText = userDescriptors2;
+
+     //return home
+     homeF()
+ }
+ // event listener for create new book button - add to top later if works
+ document.querySelector('.create-new-book-button').addEventListener('click', formed);  
+
+
+     //more DOM stuff
+     //titles.push(title);
+     //descriptors.push(descriptors1);
+     //descriptors.push(descriptors2);
+     //currentCover = createCover(cover, title, descriptors1, descriptors2);
+     //coverImage.src = cover;
+     //coverImage.alt = `${title}`;
+     //document.querySelector('.cover-title').innerText = title;
+     //document.querySelector('.tagline-1').innerText = descriptors1;
+     //document.querySelector('.tagline-2').innerText = descriptors2;
+     //homeF();
+     //console.log(cover, title, descriptors1, descriptors2);
+   
 
 // We've provided two functions to get you started
 function getRandomIndex(array) {
