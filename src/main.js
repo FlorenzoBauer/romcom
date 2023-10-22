@@ -14,7 +14,8 @@ var saveVButton = document.querySelector('.save-cover-button');
 var viewSButton = document.querySelector('.view-saved-button');
 var makeOwnButton = document.querySelector('.make-new-button');
 var createBookButton = document.querySelector('.create-new-book-button');
-// var deleteButton = document.querySelectorAll('.mini-cover');
+var deleteAction = document.querySelector('.saved-covers-section');
+
 // We've provided a few variables below
 
 var savedCovers = [];
@@ -27,7 +28,7 @@ randomCover.addEventListener('click', randomButton);
 createBookButton.addEventListener('click', makeMybook);
 saveVButton.addEventListener('click', savedF);
 viewSButton.addEventListener('click', viewSavedCovers);
-// deleteButton.addEventListener('dblclick', deleteSavedCover);
+deleteAction.addEventListener('dblclick', deleteSavedCover)
 // Create your event handlers and other functions here 👇
 
 function viewSavedCovers(){
@@ -80,7 +81,7 @@ function showSavedCovers(){
   savedCoversSection.innerHTML = '';
   for (var i = 0; i < savedCovers.length; i++) {
     savedCoversSection.innerHTML += `
-    <section class="mini-cover">
+    <section class="mini-cover" data-book-id=${savedCovers[i].id}>
       <img class="cover-image" src=${savedCovers[i].coverImg}>
       <h2 class="cover-title">${savedCovers[i].title}</h2>
       <h3 class="tagline">A tale of <span class="tagline-1">${savedCovers[i].tagline1}</span> and <span class="tagline-2">${savedCovers[i].tagline2}</span></h3>
@@ -121,31 +122,29 @@ function makeMybook(event) {
       descriptors.push(userTagline1, userTagline2);
 
       currentCover = createCover(userCover, userTitle, userTagline1, userTagline2)
-      //saveCover(newCover)
-
   homeF();
 }
-// function makeBookInfo(event){
-//   event.preventDefault();
-//   covers.push(userCover);
-//   titles.push(userTitle);
-//   descriptors.push(userTagline1, userTagline2);
-//   return makeMybook(),homeF()
-// }
 function saveCover() {
   if (!savedCovers.includes(currentCover)) {
     savedCovers.push(currentCover);
   }
 }
-// function deleteSavedCover(event) {
-//   var coverId = event.target.closest('.mini-cover').id;
-//   for (var i = 0; i < savedCovers.length; i++) {
-//     if (coverId === savedCovers[i].id) {
-//       savedCovers.splice(i, 1);
-//     }
-//   }
-//   showSavedCovers();
-// }
+function deleteSavedCover(event) {
+  var selectedBookElement = event.target.closest('.mini-cover');
+  if (!selectedBookElement){
+    return
+  }
+  var selectedBookId =  parseInt(selectedBookElement.dataset.bookId, 10)
+  for (var i = 0; i < savedCovers.length; i++){
+    var savedBookId = savedCovers[i].id
+    
+    if (savedBookId === selectedBookId) {
+      savedCovers.splice(i,1);
+      showSavedCovers();      
+      return
+    }
+  }
+}
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
